@@ -7,7 +7,9 @@ import {
     Image,
     TouchableNativeFeedback,
     TextInput,
+    Alert
 } from 'react-native';
+import axios from 'axios';
 
 import {Toast} from './components/Toast'
 import {Loading} from './components/Loading'
@@ -17,15 +19,47 @@ export default class loginAccount extends Component {
     constructor(props) {
     super(props);
         this.state = {
+            a: '',
             showCheckbox: true,
+            picCode: 'http://118.25.23.176:81/Account/ImageCode',
+            invitationCode: null,
+            form: {
+                phone: '17785921173',
+                pwd: 'kupo111',
+                picCode: '',
+                code: ''                
+            }
         }
     }
+    changeImgCode = () =>{
+        axios({
+
+        })
+        axios.get('http://118.25.23.176:81/Account/ImageCode').then(res => {
+            console.warn(new Date());
+        })
+        this.setState({
+            picCode: 'http://118.25.23.176:81/Account/ImageCode?t='+ new Date()
+        })
+    }
     _logined = () => {
-        Loading.show('Loading...')
-        setTimeout(()=>{
-            Loading.hidden();
-            this.props.loginedAccount()
-        },2000)   
+        Loading.show('Loading...');
+        axios({
+            method: "post",
+            url: "/Account/Login",
+            data: {
+                InvitationCode: this.invitationCode,
+                Password: this.form.pwd,
+                Phone: this.form.phone,
+                ImageCode: this.form.picCode  
+            }
+        }).then((res) => {
+            console.warn(res)
+        })
+        // setTimeout(()=>{
+        //     Loading.hidden();
+        //     this.props.loginedAccount()
+        // },2000)   
     }
     _login_phone = () => {
         this.props.login_type()
@@ -33,10 +67,16 @@ export default class loginAccount extends Component {
     test() {
         Toast.showSuccess('这是showSuccess类型')
     }
+    test_ = (pwd)=> {
+        this.setState({
+            a: pwd
+        })
+    }
 
     render() {
         return (
             <View style={styles.login}>
+            <Text>{this.state.a}</Text>
                 <View style={styles.loginInput}>
 
                     <Icon name="user" size={20} color="#999999"/>
@@ -52,6 +92,8 @@ export default class loginAccount extends Component {
                     <TextInput
                     style={styles.loginTextInput}
                     placeholder="密码"
+                    // editable={true}
+                    onChangeText={this.test_}
                     underlineColorAndroid='transparent'
                     />
                 </View>
@@ -60,14 +102,18 @@ export default class loginAccount extends Component {
                         <TextInput
                         style={{flex:1}}                           
                         placeholder="验证码"
+                        
                         underlineColorAndroid='transparent'
                         />
                     </View>
+                    <TouchableNativeFeedback onPress={this.changeImgCode}>
                     <Image
                     style={{height:'100%',width:100,borderRadius: 5}}
-                    source={require('../Images/ImageCode.jpg')}
+                    source={{uri:this.state.picCode}}
                     />
+                    </TouchableNativeFeedback>
                 </View>
+
                 <View style={styles.loginInputFoot}>
                     <TouchableNativeFeedback onPress={()=>{this.setState({showCheckbox: !this.state.showCheckbox})}}>
                         <View style={styles.checkbox}>

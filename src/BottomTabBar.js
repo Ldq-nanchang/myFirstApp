@@ -20,6 +20,7 @@ import HomeIndex from "./home";
 import HomeInfo from "./home_s";
 import Expense from "./expense";
 import Center from "./center";
+import Wallet from "./wallet"
 
 class Home extends React.Component {
   static navigationOptions = {
@@ -64,7 +65,7 @@ class Page3 extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>这是kupo钱包</Text>
+        <Wallet/>
       </View>
     );
   }

@@ -3,7 +3,6 @@
  * https://github.com/facebook/react-native
  * @flow
  */
-
 import React, { Component } from 'react';
 
 import {StackNavigator} from "react-navigation"; 
@@ -17,9 +16,10 @@ import expenseAction from './src/pages/expenseAction';
 import expenseIngetral from './src/pages/expenseIngetral';
 import earnings from './src/pages/earnings';
 const App = StackNavigator({
-  Earnings: {screen: earnings},
+  // Earnings: {screen: earnings},
   // center: {screen: Center,navigationOptions:{header:null}},
-  // Login: {screen: Login,navigationOptions:{header:null}},
+  Login: {screen: Login,navigationOptions:{header:null}},
+  
   // Page2: {screen: expense,navigationOptions:{header:null}},
   Home: {screen: BottomTabBar,navigationOptions:{header:null}},
   Test: {screen: TestPage},

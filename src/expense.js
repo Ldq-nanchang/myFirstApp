@@ -48,29 +48,29 @@ export default class Expense extends Component {
                     <Text style={{color:'#000000',fontSize:14}}>消费</Text>
                 </View>
                 <View style={styles.expenseHeader}>
-                    <View style={{flexDirection:'row',justifyContent:'space-between'}}>
+                    <View style={{flexDirection:'row',justifyContent:'space-between',alignItems:'center'}}>
                         <View style={styles.expenseHeaderUnit}>
                             <Text style={{color:'rgba(255,251,240,0.7)',marginBottom:10}}>消费额</Text>
-                            <Text style={{color:'#ffffff',fontSize:16}}>6666666666</Text>
+                            <Text style={{color:'#ffffff',fontSize:16}}>666666</Text>
                         </View>
-                        <View style={{borderRightWidth:1,borderColor:'#ffffff'}}></View>
+                        <View style={{borderRightWidth:0.5,height:20,borderColor:'rgba(255,255,255,0.7)'}}></View>
                         <View style={styles.expenseHeaderUnit}>
                             <Text style={{color:'rgba(255,251,240,0.7)',marginBottom:10}}>配额</Text>
                             <Text style={{color:'#ffffff',fontSize:16}}>666666</Text>
                         </View>
                     </View>
-                    <View style={styles.expenseHeaderBtns}>
-                        <TouchableOpacity  onPress={() => navigation.navigate('expenseAction', { key: '消费额登记' })}>
-                            <View style={[styles.expenseHeaderBtn,{marginRight:14}]}>
-                                <Text style={{color:'#ffffff',fontSize:12}}>消费登记</Text>
-                            </View>
-                        </TouchableOpacity>
-                        <TouchableOpacity onPress={() => navigation.navigate('expenseIngetral', { key: '积分兑换' })}>
-                            <View style={styles.expenseHeaderBtn}>
-                                <Text style={{color:'#ffffff',fontSize:12}}>积分兑换</Text>
-                            </View>
-                        </TouchableOpacity>
-                    </View>
+                </View>
+                <View style={styles.expenseHeaderBtns}>
+                    <TouchableOpacity  onPress={() => navigation.navigate('expenseAction', { key: '消费额登记' })}>
+                        <View style={[styles.expenseHeaderBtn,{marginRight:14}]}>
+                            <Text style={{color:'#fff',fontSize:12}}>消费登记</Text>
+                        </View>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => navigation.navigate('expenseIngetral', { key: '积分兑换' })}>
+                        <View style={styles.expenseHeaderBtn}>
+                            <Text style={{color:'#fff',fontSize:12}}>积分兑换</Text>
+                        </View>
+                    </TouchableOpacity>
                 </View>
                 <View style={styles.expenseListTitle}>
                     <Text>消费信息</Text>
@@ -110,7 +110,8 @@ const styles = StyleSheet.create({
         alignItems:'center',
         height: 167,
         backgroundColor: '#6787bd',
-        paddingTop: 29
+        paddingTop: 29,
+        marginBottom: -40,
     },
     expenseHeaderUnit: {
         paddingLeft: 30,
@@ -118,18 +119,26 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         width: '49%'
     },
+    // 顶部按钮
     expenseHeaderBtns: {
-        marginTop: 14,
-        flexDirection: 'row'
+        marginLeft: 28,
+        marginRight: 28,
+        backgroundColor: '#fff',
+        flexDirection: 'row',
+        padding: 24,
+        justifyContent: 'space-around',
+        borderRadius: 5
     },
     expenseHeaderBtn: {
         paddingTop: 5,
         paddingBottom: 5,
         paddingLeft: 15,
         paddingRight: 15,
-        borderWidth: 1,
-        borderColor: '#ffffff',
-        borderRadius: 15
+        // borderWidth: 1,
+        // borderColor: '#6787bd',
+        backgroundColor: '#6787bd',
+        borderRadius: 15,
+        
     },
     expenseListTitle: {
         padding: 14
