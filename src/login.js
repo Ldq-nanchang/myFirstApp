@@ -53,7 +53,7 @@ export default class Login extends Component {
                 break;
         }
         return (
-            <View>
+            <View style={{backgroundColor:'#fff'}}>
                 <ImageBackground style={styles.loginTop}
                 source={require('../Images/login_top.jpg')}>
                     <View style={styles.loginTopContent}>
